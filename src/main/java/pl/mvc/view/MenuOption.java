@@ -2,8 +2,8 @@ package pl.mvc.view;
 
 public enum MenuOption {
     EXIT(0),
-    CIRCLE_FIELD(1);
-
+    CIRCLE_FIELD(1),
+    CHANGE_LANGUAGE(99);
     public int menuIndex;
 
     MenuOption(int menuIndex) {
