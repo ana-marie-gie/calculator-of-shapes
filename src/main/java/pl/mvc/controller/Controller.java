@@ -4,6 +4,7 @@ import pl.mvc.model.Circle;
 import pl.mvc.model.Model;
 import pl.mvc.view.MenuOption;
 import pl.mvc.view.View;
+import pl.mvc.view.ViewENG;
 import pl.mvc.view.ViewPL;
 
 public class Controller {
@@ -29,13 +30,17 @@ public class Controller {
                 case CIRCLE_FIELD:
                     handleCircleFieldCalculate();
                     break;
-
+                case CHANGE_LANGUAGE:
+                    handleLanguageChange();
+                    continue;
             }
         } while (menuOption != MenuOption.EXIT);
     }
 
     private void handleLanguageChange() {
         if (view instanceof ViewPL) {
+            view = new ViewENG();
+        }else {
             view = new ViewPL();
         }
     }
