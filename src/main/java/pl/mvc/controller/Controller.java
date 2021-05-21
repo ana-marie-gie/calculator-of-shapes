@@ -1,6 +1,7 @@
 package pl.mvc.controller;
 
 import pl.mvc.model.Circle;
+import pl.mvc.model.Cuboid;
 import pl.mvc.model.Model;
 import pl.mvc.view.MenuOption;
 import pl.mvc.view.View;
@@ -30,6 +31,9 @@ public class Controller {
                 case CIRCLE_FIELD:
                     handleCircleFieldCalculate();
                     break;
+                case CUBOID_VOLUME:
+                    handleCuboidVolume();
+                    break;
                 case CHANGE_LANGUAGE:
                     handleLanguageChange();
                     continue;
@@ -37,17 +41,24 @@ public class Controller {
         } while (menuOption != MenuOption.EXIT);
     }
 
+    private void handleCuboidVolume() {
+        Cuboid cuboid = view.promptForCuboidParameters();
+        double cuboidVolume = model.calculateCuboidVolume(cuboid);
+        view.showCuboidVolume(cuboidVolume);
+    }
+
+
+
+    public void handleCircleFieldCalculate() {
+        Circle circle = view.promptForCircleParameters();
+        double circleField = model.calculateCircleField(circle);
+        view.showCircleField(circleField);
+    }
     private void handleLanguageChange() {
         if (view instanceof ViewPL) {
             view = new ViewENG();
         }else {
             view = new ViewPL();
         }
-    }
-
-    public void handleCircleFieldCalculate() {
-        Circle circle = view.promptForCircleParameters();
-        double circleField = model.calculateCircleField(circle);
-        view.showCircleField(circleField);
     }
 }

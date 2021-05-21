@@ -5,4 +5,9 @@ public class Model {
         double field = Math.PI * circle.getR();
         return field;
     }
+
+    public double calculateCuboidVolume(Cuboid cuboid) {
+        double volume = cuboid.getLength() * cuboid.getWidth() * cuboid.getHeight();
+        return volume;
+    }
 }

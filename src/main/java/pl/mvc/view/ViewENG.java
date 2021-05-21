@@ -1,6 +1,7 @@
 package pl.mvc.view;
 
 import pl.mvc.model.Circle;
+import pl.mvc.model.Cuboid;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class ViewENG implements View {
     public MenuOption showMenuAndGetOption() {
         log("Choose option: ");
         log("[" + MenuOption.CIRCLE_FIELD.menuIndex + "]" + " Count circle field");
+        log("[" + MenuOption.CUBOID_VOLUME.menuIndex + "]" + " Count cuboid volume");
         log("[" + MenuOption.CHANGE_LANGUAGE.menuIndex + "]" + " Change language to Polish");
         log("[" + MenuOption.EXIT.menuIndex + "]" + " Exit the application");
 
@@ -53,5 +55,34 @@ public class ViewENG implements View {
     @Override
     public void showCircleField(double circleField) {
         log("The area of the circle is: " + circleField);
+    }
+
+    @Override
+    public Cuboid promptForCuboidParameters() {
+        Double l = null;
+        Double w = null;
+        Double h = null;
+
+        while (l == null || w == null || h == null) {
+            try {
+                log("Enter the length of the cuboid: ");
+                l = scanner.nextDouble();
+                log("Enter the width of the cuboid: ");
+                w = scanner.nextDouble();
+                log("Enter the height of the cuboid: ");
+                h = scanner.nextDouble();
+                Cuboid cuboid = new Cuboid(l, w, h);
+                return cuboid;
+            } catch (InputMismatchException e) {
+                log("Enter a floating point value using a comma");
+                scanner.next();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void showCuboidVolume(double circleVolume) {
+        log("Cuboid volume value: " + circleVolume);
     }
 }
